@@ -1,24 +1,13 @@
-# README
+# Desafio BackEnd
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este projeto serve como propósito de treino das minhas skills na programação. Encontrei o repositório no Github e decidi fazer esse desafio para me desafiar 😁.
 
-Things you may want to cover:
+Estou construindo este projeto como prática nas tecnologias mais abaixo citadas.
 
-* Ruby version
+## Stack utilizada
 
-* System dependencies
+**Front-end:** Será usado apenas ERB, com bootstrap para estilização.
 
-* Configuration
+**Back-end:** Ruby on Rails (Ruby versão 3.0.0 e Rails versão 7.1.5)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Banco de dados:** PostgreSQL versão 16
