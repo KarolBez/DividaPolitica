@@ -1,0 +1,10 @@
+<h1>Selecione um Estado para continuar</h1>
+
+<%= form_with url: deputados_path, method: :get, local: true do %>
+    <div>
+        <label for="estado">Estado:</label>
+        <%= select_tag :estado, options_for_select(Deputado.distinct.pluck(:estado).sort), prompt: "Escolha um estado" %>
+    </div>
+
+    <%= submit_tag "Filtrar Deputados" %>
+<% end %>
