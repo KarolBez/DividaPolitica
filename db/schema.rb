@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_13_162929) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_13_170601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,7 +36,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_13_162929) do
     t.string "nota_fiscal_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ide_documento"
     t.index ["deputado_id"], name: "index_despesas_on_deputado_id"
+    t.index ["ide_documento"], name: "index_despesas_on_ide_documento"
   end
 
   add_foreign_key "despesas", "deputados"
