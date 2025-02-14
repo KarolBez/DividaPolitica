@@ -1,7 +1,40 @@
-<h1>Bem-Vindo ao Sistema de Consulta de Deputados</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Bem-Vindo ao Sistema de Consulta de Deputados</h1>
 
-<p>Este sistema permite consultar informações sobre deputados deferais e suas despesas parlamentares.</p>
+    <p class="lead text-center">
+        Este sistema permite consultar informações sobre deputados deferais e suas despesas parlamentares.
+    </p>
 
-<p>escolha um estado e veja os dados detalhados</p>
+    <p class="lead text-center">
+        Clique no botão abaixo para direcionar a consulta por estado individual:
+    </p>
 
-<%= link_to "Consultar Deputados", selecao_estado_path, class: "btn btn-primary" %>
+    <div class="text-center my-4">
+        <%= link_to "Consultar Deputados", selecao_estado_path, class: "btn btn-primary btn-lg" %>
+    </div>
+
+    <p class="lead text-center">
+        Abaixo um resumo dos valores aqui disponíveis:
+    </p>
+
+    <div class="row text-center mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>Total de Deputados</h3>
+                <p class="display-5"><%= @total_deputados %></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>Total de Despesas</h3>
+                <p class="display-5"><%= @total_despesas %></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3>Gastos Totais</h3>
+                <p class="display-5">R$ <%= number_to_currency(@gastos_totais, unit: "", separator: ",", delimiter: ".") %></p>
+            </div>
+        </div>
+    </div>
+</div>
