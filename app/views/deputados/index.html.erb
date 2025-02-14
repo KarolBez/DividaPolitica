@@ -3,27 +3,39 @@
 
 <div class="container">
     <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
+        <table class="table table-striped table-bordered align-middle">
+            <thead class="table-dark text-center">
                 <tr>
+                    <th>Foto</th>
                     <th>Nome</th>
                     <th>Partido</th>
                     <th>Estado</th>
+                    <th>Maior despesa</th>
                     <th>Total de Despesa</th>
                 </tr>
             </thead>
             <tbody>
                 <% @deputados.each do |deputados| %>
                     <tr>
+                        <td class="text-center">
+                            <img src="http://www.camara.leg.br/internet/deputado/bandep/<%= deputados.ide_cadastro %>.jpg" 
+                                alt="Foto de <%= deputados.nome %>" class="rounded-circle" width="50" height="50">
+                        </td>
                         <td><%= deputados.nome %></td>
                         <td><%= deputados.partido %></td>
                         <td><%= deputados.estado %></td>
+                        <td>R$ <%= number_to_currency(deputados.despesas.order(valor_liquido: :desc).limit(1).pluck(:valor_liquido).first, unit: "", separator: ",", delimiter: ".") %></td>
                         <td>R$ <%= number_to_currency(deputados.despesas.sum(:valor_liquido), unit: "", separator: ",", delimiter: ".") %></td>
                     </tr>
                 <% end %>
             </tbody>
         </table>
     </div>
+
+    <div class="d-flex justify-content-center my-4">
+        <%= paginate @deputados %>
+    </div>
+
 
     <div class="d-flex justify-content-center gap-3 mt-4">
         <%= link_to "Voltar", selecao_estado_path, class: "btn btn-secondary" %>

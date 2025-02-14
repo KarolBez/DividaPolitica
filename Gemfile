@@ -26,6 +26,10 @@ gem 'bootstrap', '~> 5.2'
 
 gem 'sassc-rails'
 
+gem "kaminari", "~> 1.2"
+
+gem 'kaminari-bootstrap'
+
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
 
