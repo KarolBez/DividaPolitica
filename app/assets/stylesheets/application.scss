@@ -1,1 +1,31 @@
 @import "bootstrap";
+
+.pagination {
+    .page-link {
+        color: #6c757d;
+        border-radius: 5px;
+        margin: 0 2px;
+        padding: 0.5rem 0.75rem;
+        
+        &:hover {
+            color: #495057;
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+    }
+
+    .page-item.active .page-link {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: white;
+    }
+
+    .page-item.disabled .page-link {
+        color: #adb5bd;
+    }
+
+    .page-item:first-child .page-link,
+    .page-item:last-child .page-link {
+        border-radius: 5px;
+    }
+}
