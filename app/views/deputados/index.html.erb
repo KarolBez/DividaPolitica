@@ -36,12 +36,13 @@
                     <th>Estado</th>
                     <th>Maior despesa</th>
                     <th>Total de Despesa</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 <% @deputados.each do |deputados| %>
                     <tr>
-                        <td class="text-center">
+                        <td>
                             <img src="http://www.camara.leg.br/internet/deputado/bandep/<%= deputados.ide_cadastro %>.jpg" 
                                 alt="Foto de <%= deputados.nome %>" class="rounded-circle" width="50" height="50">
                         </td>
@@ -50,6 +51,7 @@
                         <td><%= deputados.estado %></td>
                         <td>R$ <%= number_to_currency(deputados.despesas.order(valor_liquido: :desc).limit(1).pluck(:valor_liquido).first, unit: "", separator: ",", delimiter: ".") %></td>
                         <td>R$ <%= number_to_currency(deputados.despesas.sum(:valor_liquido), unit: "", separator: ",", delimiter: ".") %></td>
+                        <td><%= link_to "Detalhes", deputado_path(deputados), class: "btn btn-info btn-sm" %></td>
                     </tr>
                 <% end %>
             </tbody>

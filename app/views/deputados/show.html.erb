@@ -1,0 +1,49 @@
+<div class="container mt-5">
+    <h1 class="text-center">Detalhes do Deputado</h1>
+
+    <div class="card p-4 shadow-sm">
+        <div class="d-flex align-items-center">
+            <img src="http://www.camara.leg.br/internet/deputado/bandep/<%= @deputado.ide_cadastro %>.jpg" 
+                alt="Foto de <%= @deputado.nome %>" class="rounded-circle me-3" width="100" height="100">
+            <div>
+                <h3><%= @deputado.nome %></h3>
+                <p>Partido: <%= @deputado.partido %></p>
+                <p>Estado: <%= @deputado.estado %></p>
+                <p><strong>Total de Despesas:</strong> R$ <%= number_to_currency(@total_despesas, unit: "", separator: ",", delimiter: ".") %></p>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-4">Lista de Despesas</h3>
+    <table class="table table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Data</th>
+                <th>Fornecedor</th>
+                <th>Valor</th>
+                <th>Nota Fiscal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @despesas.each do |despesa| %>
+                <tr class="<%= 'table-warning' if despesa == @maior_despesa %>">
+                    <td><%= despesa.data_emissao.strftime("%d/%m/%Y") %></td>
+                    <td><%= despesa.fornecedor %></td>
+                    <td>R$ <%= number_to_currency(despesa.valor_liquido, unit: "", separator: ",", delimiter: ".") %></td>
+                    <td>
+                        <% if despesa.nota_fiscal_url.present? %>
+                            <a href="<%= despesa.nota_fiscal_url %>" target="_blank" class="btn btn-primary btn-sm">Ver Nota</a>
+                        <% else %>
+                            <span class="text-muted">Não disponível</span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <%= link_to "Voltar", deputados_path(estado: @deputado.estado), class: "btn btn-secondary" %>
+        <%= link_to "Página Inicial", root_path, class: "btn btn-primary" %>
+    </div>
+</div>

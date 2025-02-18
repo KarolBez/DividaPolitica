@@ -20,4 +20,11 @@ class DeputadosController < ApplicationController
       redirect_to root_path, alert: "Por favor, selecione um estado para continuar."
     end
   end
+
+  def show
+    @deputado = Deputado.find(params[:id])
+    @despesas = @deputado.despesas.order(valor_liquido: :desc)
+    @maior_despesa = @despesas.first
+    @total_despesas = @despesas.sum(:valor_liquido)
+  end
 end

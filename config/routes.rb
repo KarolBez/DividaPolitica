@@ -5,4 +5,6 @@ Rails.application.routes.draw do
 
   get "/selecao_estado", to: "deputados#selecao_estado"
   get "/deputados", to: "deputados#index"
+
+  resources :deputados, only: [:index, :show]
 end
