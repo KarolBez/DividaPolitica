@@ -16,7 +16,7 @@
 
     <h3 class="mt-4">Lista de Despesas</h3>
     <table class="table table-striped mt-3">
-        <thead class="table-dark">
+        <thead class="table-dark text-center">
             <tr>
                 <th>Data</th>
                 <th>Fornecedor</th>
@@ -24,7 +24,7 @@
                 <th>Nota Fiscal</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
             <% @despesas.each do |despesa| %>
                 <tr class="<%= 'table-warning' if despesa == @maior_despesa %>">
                     <td><%= despesa.data_emissao.strftime("%d/%m/%Y") %></td>
