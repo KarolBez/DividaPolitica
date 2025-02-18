@@ -4,7 +4,10 @@ class HomeController < ApplicationController
     @total_despesas = Despesa.count
     @gastos_totais = Despesa.sum(:valor_liquido)
 
-    @deputados_por_estado = Deputado.group(:estado).order(:estado).count
-    @gastos_por_estado = Despesa.joins(:deputado).group("deputados.estado").sum(:valor_liquido)
+    @exercicios_disponiveis = Despesa
+                              .select("DISTINCT EXTRACT(YEAR FROM data_emissao) AS ano")
+                              .where("EXTRACT(YEAR FROM data_emissao) > 2000")
+                              .map { |d| d.ano.to_i }
+                              .sort
   end
 end
