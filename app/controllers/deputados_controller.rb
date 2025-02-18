@@ -10,8 +10,12 @@ class DeputadosController < ApplicationController
         .where(estado: params[:estado])
         .group("deputados.id")
         .order("total_despesas DESC")
-        .page(params[:page])
-        .per(10)
+      
+      @deputados = @deputados.where("LOWER(nome) LIKE ?", "%#{params[:nome].downcase}%") if params[:nome].present?
+
+      @deputados = @deputados.where(partido: params[:partido]) if params[:partido].present?
+
+      @deputados = @deputados.page(params[:page]).per(10)
     else
       redirect_to root_path, alert: "Por favor, selecione um estado para continuar."
     end
