@@ -6,14 +6,23 @@
             <%= hidden_field_tag :estado, params[:estado] %>
 
             <div class="row g-3 justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <%= label_tag :nome, "Nome do Deputado", class: "form-label" %>
                     <%= text_field_tag :nome, params[:nome], class: "form-control" %>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <%= label_tag :partido, "Partido", class: "form-label" %>
                     <%= select_tag :partido, options_for_select(Deputado.distinct.order("partido ASC").pluck(:partido), params[:partido]), class: "form-select" %>
+                </div>
+
+                <div class="col-md-3">
+                    <%= label_tag :ano, "Ano da Despesa", class: "form-label" %>
+                    <%= select_tag :ano, 
+                        options_for_select(Despesa.select("DISTINCT EXTRACT(YEAR FROM data_emissao) AS ano")
+                                                    .where("EXTRACT(YEAR FROM data_emissao) > 2000")
+                                                    .map { |d| d.ano.to_i }
+                                                    .sort), include_blank: "Todos os exercícios", class: "form-select" %>
                 </div>
             </div>
 
@@ -49,8 +58,8 @@
                         <td><%= deputados.nome %></td>
                         <td><%= deputados.partido %></td>
                         <td><%= deputados.estado %></td>
-                        <td>R$ <%= number_to_currency(deputados.despesas.order(valor_liquido: :desc).limit(1).pluck(:valor_liquido).first, unit: "", separator: ",", delimiter: ".") %></td>
-                        <td>R$ <%= number_to_currency(deputados.despesas.sum(:valor_liquido), unit: "", separator: ",", delimiter: ".") %></td>
+                        <td>R$ <%= number_to_currency(deputados.maior_despesa, unit: "", separator: ",", delimiter: ".") %></td>
+                        <td>R$ <%= number_to_currency(deputados.total_despesas, unit: "", separator: ",", delimiter: ".") %></td>
                         <td><%= link_to "Detalhes", deputado_path(deputados), class: "btn btn-info btn-sm" %></td>
                     </tr>
                 <% end %>
