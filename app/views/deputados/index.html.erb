@@ -22,7 +22,7 @@
                         options_for_select(Despesa.select("DISTINCT EXTRACT(YEAR FROM data_emissao) AS ano")
                                                     .where("EXTRACT(YEAR FROM data_emissao) > 2000")
                                                     .map { |d| d.ano.to_i }
-                                                    .sort), include_blank: "Todos os exercícios", class: "form-select" %>
+                                                    .sort, params[:ano]), include_blank: "Todos os exercícios", class: "form-select" %>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                         <td><%= deputados.estado %></td>
                         <td>R$ <%= number_to_currency(deputados.maior_despesa, unit: "", separator: ",", delimiter: ".") %></td>
                         <td>R$ <%= number_to_currency(deputados.total_despesas, unit: "", separator: ",", delimiter: ".") %></td>
-                        <td><%= link_to "Detalhes", deputado_path(deputados), class: "btn btn-info btn-sm" %></td>
+                        <td><%= link_to "Detalhes", deputado_path(deputados, ano: params[:ano]), class: "btn btn-info btn-sm" %></td>
                     </tr>
                 <% end %>
             </tbody>

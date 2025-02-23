@@ -25,11 +25,12 @@ class DeputadosController < ApplicationController
 
   def show
     @deputado = Deputado.find(params[:id])
+
     @despesas = @deputado.despesas.order(valor_liquido: :desc)
+    @despesas = @deputado.despesas.where("EXTRACT(YEAR FROM despesas.data_emissao) = ?", params[:ano].to_i) if params[:ano].present?
     @maior_despesa = @despesas.first
     @total_despesas = @despesas.sum(:valor_liquido)
+    
+    @despesas = @despesas.page(params[:page]).per(10)
   end
 end
-
-
-Despesa.select("EXTRACT(YEAR FROM data_emissao)").where("EXTRACT(YEAR FROM data_emissao) > 2000")

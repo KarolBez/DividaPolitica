@@ -11,6 +11,11 @@
                 <p>Estado: <%= @deputado.estado %></p>
                 <p><strong>Total de Despesas:</strong> R$ <%= number_to_currency(@total_despesas, unit: "", separator: ",", delimiter: ".") %></p>
             </div>
+            <div>
+                <% if params[:ano].present? %>
+                    <p>Exibindo despesas do Exercício: <strong><%= params[:ano] %></strong></p>
+                <% end %>
+            </div>
         </div>
     </div>
 
@@ -41,6 +46,10 @@
             <% end %>
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-center my-4">
+        <%= paginate @despesas %>
+    </div>
 
     <div class="text-center mt-4">
         <%= link_to "Voltar", deputados_path(estado: @deputado.estado), class: "btn btn-secondary" %>
