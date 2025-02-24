@@ -27,7 +27,7 @@ class DeputadosController < ApplicationController
     @deputado = Deputado.find(params[:id])
 
     @despesas = @deputado.despesas.order(valor_liquido: :desc)
-    @despesas = @deputado.despesas.where("EXTRACT(YEAR FROM despesas.data_emissao) = ?", params[:ano].to_i) if params[:ano].present?
+    @despesas = @despesas.where("EXTRACT(YEAR FROM despesas.data_emissao) = ?", params[:ano].to_i) if params[:ano].present?
     @maior_despesa = @despesas.first
     @total_despesas = @despesas.sum(:valor_liquido)
     
