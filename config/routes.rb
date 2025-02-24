@@ -7,4 +7,11 @@ Rails.application.routes.draw do
   get "/deputados", to: "deputados#index"
 
   resources :deputados, only: [:index, :show]
+
+  resources :despesas do
+    collection do
+      get :upload
+      post :import
+    end
+  end
 end
