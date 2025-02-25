@@ -29,3 +29,21 @@
         border-radius: 5px;
     }
 }
+
+.navbar {
+    font-family: "Poppins", sans-serif;
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: #ffc107 !important;
+    transform: scale(1.05);
+}
+
+.navbar-brand span {
+    font-size: 1.3rem;
+}
