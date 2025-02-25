@@ -2,18 +2,21 @@
     <h1 class="text-center">Detalhes do Deputado</h1>
 
     <div class="card p-4 shadow-sm">
-        <div class="d-flex align-items-center">
-            <img src="http://www.camara.leg.br/internet/deputado/bandep/<%= @deputado.ide_cadastro %>.jpg" 
-                alt="Foto de <%= @deputado.nome %>" class="rounded-circle me-3" width="100" height="100">
-            <div>
-                <h3><%= @deputado.nome %></h3>
-                <p>Partido: <%= @deputado.partido %></p>
-                <p>Estado: <%= @deputado.estado %></p>
-                <p><strong>Total de Despesas:</strong> R$ <%= number_to_currency(@total_despesas, unit: "", separator: ",", delimiter: ".") %></p>
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <img src="http://www.camara.leg.br/internet/deputado/bandep/<%= @deputado.ide_cadastro %>.jpg" 
+                    alt="Foto de <%= @deputado.nome %>" class="rounded-circle me-3" width="100" height="100">
+                <div>
+                    <h3><%= @deputado.nome %></h3>
+                    <p>Partido: <%= @deputado.partido %></p>
+                    <p>Estado: <%= @deputado.estado %></p>
+                    <p><strong>Total de Despesas:</strong> R$ <%= number_to_currency(@total_despesas, unit: "", separator: ",", delimiter: ".") %></p>
+                </div>
             </div>
-            <div>
+            <div class="ms-auto text-center">
                 <% if params[:ano].present? %>
-                    <p>Exibindo despesas do Exercício: <strong><%= params[:ano] %></strong></p>
+                    <p>Exibindo despesas do Exercício:</p>
+                    <p><strong class="badge bg-secondary fs-5 px-3 py-2"><%= params[:ano] %></strong></p>
                 <% end %>
             </div>
         </div>
