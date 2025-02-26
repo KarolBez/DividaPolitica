@@ -19,7 +19,8 @@ class DeputadosController < ApplicationController
 
       @deputados = @deputados.page(params[:page]).per(10)
     else
-      redirect_to root_path, alert: "Por favor, selecione um estado para continuar."
+      flash[:alert] = "Por favor, selecione um estado para continuar."
+      redirect_to root_path
     end
   end
 

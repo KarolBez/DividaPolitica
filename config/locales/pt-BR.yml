@@ -3,6 +3,7 @@ pt-BR:
     messages:
       not_a_number: "não é um número"
       blank: "não pode ficar em branco"
+      record_invalid: "Validação falhou: %{errors}"
   activerecord:
     errors:
       models:
