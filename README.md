@@ -87,17 +87,45 @@ Com isso, basta realizar o download do arquivo CSV disponibilizado no link infor
 
 ## Rodando os testes
 
-Testes ainda serão desenvolvidos, em breve explicados neste readme
+Foram desenvolvidos um total de 19 testes para a aplicação, dividos da seguinte maneira: 6 testes para o models de Deputado, 6 testes para o models de Despesa, 3 para o controller dos deputados e 4 para o controller das despesas. Para executar os testes individualmente, basta executar os comandos abaixo:
+
+```bash
+    bundle exec rspec spec/models/deputado_spec.rb
+    bundle exec rspec spec/models/despesa_spec.rb
+    bundle exec rspec spec/requests/deputados_spec.rb
+    bundle exec rspec spec/requests/despesas_spec.rb
+```
+
+Pode ser verificado os testes de cada parte nos referidos arquivos. Os testes foram pensados em uma maneira simples e direta de testar a aplicação. Podem ser feitos testes mais específicos a depender da finalidade, mas atualmente já são o suficiente para testar a aplicação no seu estado atual.
+
+Também é possível executar todos os testes de uma única vez, basta executar o comando abaixo:
+
+```bash
+    bundle exec rspec
+```
 
 ## Stack utilizada
 
-**Front-end:** Será usado apenas ERB, com bootstrap para estilização.
+**Back-end:** 
+- Ruby versão 3.0.0
+- Rails versão 7.1.5
 
-**Back-end:** Ruby on Rails (Ruby versão 3.0.0 e Rails versão 7.1.5)
+**Front-end:** 
+- Html e CSS juntamente com bootstrap para estilização
+- ERB para desenvolvimento da lógica aplicada no front
 
-**Gems de destaque:** Kaminari para paginação e Rspec para testes.
+**Gems de destaque:** 
+- Kaminari para melhor paginação dos dados
+- Rspec para execução de testes na aplicação
+- shoula-matchers para escrita de testes
+- rails-controller-testing para testes dos controllers
+- turbo-rails para melhora da responsividade
+- stimulus-rails para melhora de interatividade
+- bootstrap para criação da interface 
 
-**Banco de dados:** PostgreSQL versão 16
+**Banco de dados:** 
+- PostgreSQL versão 16 para armazenamento dos dados
+- PgAdmin versão 4 para manipulação de dados
 
 ## Aprendizados
 
