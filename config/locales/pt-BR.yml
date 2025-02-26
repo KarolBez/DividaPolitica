@@ -1,0 +1,14 @@
+pt-BR:
+  errors:
+    messages:
+      not_a_number: "não é um número"
+      blank: "não pode ficar em branco"
+  activerecord:
+    errors:
+      models:
+        despesa:
+          attributes:
+            deputado:
+              required: "deve existir"
+            ide_documento:
+              blank: "não pode ficar em branco"
